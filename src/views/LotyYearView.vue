@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { API_BASE } from '@/apiBase'
 
 const route = useRoute()
 const year = Number(route.params.year)
 const loty = ref<{ id: number; name: string; year: number } | null>(null)
 const currentYear = new Date().getFullYear()
-const API_BASE = import.meta.env.MODE === 'production' ? 'http://loty-be' : 'http://localhost:8080'
 
 onMounted(async () => {
   const res = await fetch(`${API_BASE}/api/v1/loty/year/${year}`)

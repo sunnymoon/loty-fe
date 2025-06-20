@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { API_BASE } from '@/apiBase'
 
 interface Loty {
   id: number
@@ -10,7 +11,6 @@ interface Loty {
 
 const lotys = ref<Loty[]>([])
 const router = useRouter()
-const API_BASE = import.meta.env.MODE === 'production' ? 'http://loty-be' : 'http://localhost:8080'
 
 onMounted(async () => {
   const res = await fetch(`${API_BASE}/api/v1/loty`)
